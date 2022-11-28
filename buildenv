@@ -3,20 +3,19 @@ export ZOPEN_GIT_DEPS="git make gettext m4 autoconf automake zoslib"
 export ZOPEN_TARBALL_DEPS="make gzip tar"
 export ZOPEN_TARBALL_URL="https://src.fedoraproject.org/repo/pkgs/ctags/ctags-5.8.tar.gz/c00f82ecdcc357434731913e5b48630d/ctags-5.8.tar.gz"
 export ZOPEN_TYPE="TARBALL"
+export ZOPEN_CHECK="./ctags"
+export ZOPEN_CHECK_OPTS="--verbose=yes -R ."
 
 zopen_check_results()
 {
   dir="$1"
   pfx="$2"
   chk="$1/$2_check.log"
-
+  grep -q "OPENING e_vms.h as C++ language include file" ${chk}
+  failures=$?
   # Echo the following information to guage build health
-  echo "actualFailures:0"
+  echo "actualFailures:$failures"
   echo "totalTests:1"
   echo "expectedFailures:0"
-}
-
-zopen_append_to_env()
-{
-  # echo envars outside of PATH, MANPATH, LIBPATH
+  
 }
