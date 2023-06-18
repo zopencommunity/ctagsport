@@ -19,3 +19,8 @@ zopen_check_results()
   echo "expectedFailures:0"
   
 }
+
+zopen_get_version()
+{
+    ./ctags --version | head -1 | cut -d' ' -f3 | tr -d ','
+}
