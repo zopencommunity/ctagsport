@@ -1,10 +1,18 @@
 export ZOPEN_GIT_URL="git@github.com:universal-ctags/ctags.git"
 export ZOPEN_GIT_DEPS="git make gettext m4 autoconf automake zoslib"
+export ZOPEN_CATEGORIES="editor"
 export ZOPEN_TARBALL_DEPS="make gzip tar"
 export ZOPEN_TARBALL_URL="https://src.fedoraproject.org/repo/pkgs/ctags/ctags-5.8.tar.gz/c00f82ecdcc357434731913e5b48630d/ctags-5.8.tar.gz"
 export ZOPEN_TYPE="TARBALL"
 export ZOPEN_CHECK="./ctags"
 export ZOPEN_CHECK_OPTS="--verbose=yes -R ."
+export ZOPEN_COMP=CLANG
+
+zopen_pre_patch()
+{
+  export CFLAGS="$CFLAGS $CPPFLAGS"
+}
+
 
 zopen_check_results()
 {
