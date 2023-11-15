@@ -4,12 +4,20 @@ CTAGS_VERSION="6.0.0"
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_DEV_URL="git@github.com:universal-ctags/ctags.git"
 export ZOPEN_DEV_DEPS="git make gettext m4 autoconf automake zoslib"
+export ZOPEN_CATEGORIES="editor"
 export ZOPEN_STABLE_DEPS="make gzip tar"
 # export ZOPEN_STABLE_URL="https://src.fedoraproject.org/repo/pkgs/ctags/ctags-${CTAGS_VERSION}.tar.gz/c00f82ecdcc357434731913e5b48630d/ctags-${CTAGS_VERSION}.tar.gz"
 export ZOPEN_STABLE_URL="https://github.com/universal-ctags/ctags/releases/download/v${CTAGS_VERSION}/universal-ctags-${CTAGS_VERSION}.tar.gz"
 
 export ZOPEN_CHECK="./ctags"
 export ZOPEN_CHECK_OPTS="--verbose=yes -R ."
+export ZOPEN_COMP=CLANG
+
+zopen_pre_patch()
+{
+  export CFLAGS="$CFLAGS $CPPFLAGS"
+}
+
 
 zopen_check_results()
 {
@@ -23,3 +31,9 @@ zopen_check_results()
   echo "totalTests:1"
   echo "expectedFailures:0"
 }
+
+zopen_get_version()
+{
+  ./ctags --version | head -1 | awk -F, '{ print $1 }' | awk  -F' '  '{ print $3 }'
+}
+
