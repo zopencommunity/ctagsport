@@ -1,0 +1,13 @@
+diff --git a/Makefile.am b/Makefile.am
+index 72298929..bbd8036f 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -76,7 +76,7 @@ cc4b_verbose = $(cc4b_verbose_@AM_V@)
+ cc4b_verbose_ = $(cc4b_verbose_@AM_DEFAULT_V@)
+ cc4b_verbose_0 = @echo CC4BUILD "  $@";
+ $(PACKCC): $(srcdir)/$(PACKCC_SRC)
+-	$(cc4b_verbose)$(CC_FOR_BUILD) $(CFLAGS_FOR_BUILD) $(CPPFLAGS_FOR_BUILD) $(PACKCC_CPPFLAGS_FOR_BUILD) $(LDFLAGS_FOR_BUILD) -o $@ $(srcdir)/$(PACKCC_SRC)
++	$(cc4b_verbose)$(CC_FOR_BUILD) $(CFLAGS_FOR_BUILD) $(CPPFLAGS_FOR_BUILD) $(PACKCC_CPPFLAGS_FOR_BUILD) $(LDFLAGS_FOR_BUILD) -o $@ $(srcdir)/$(PACKCC_SRC) $(LIBS)
+ 
+ if USE_READCMD
+ bin_PROGRAMS+= readtags
