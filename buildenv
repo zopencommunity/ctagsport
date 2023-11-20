@@ -2,15 +2,15 @@
 CTAGS_VERSION="6.0.0"
 
 export ZOPEN_BUILD_LINE="STABLE"
-export ZOPEN_DEV_URL="git@github.com:universal-ctags/ctags.git"
-export ZOPEN_DEV_DEPS="git make gettext m4 autoconf automake zoslib"
+export ZOPEN_DEV_URL="https://github.com/universal-ctags/ctags.git"
+export ZOPEN_DEV_DEPS="autoconf automake m4 perl git make gettext m4 autoconf automake zoslib pkgconfig diffutils grep python"
 export ZOPEN_CATEGORIES="editor"
-export ZOPEN_STABLE_DEPS="make gzip tar"
-# export ZOPEN_STABLE_URL="https://src.fedoraproject.org/repo/pkgs/ctags/ctags-${CTAGS_VERSION}.tar.gz/c00f82ecdcc357434731913e5b48630d/ctags-${CTAGS_VERSION}.tar.gz"
-export ZOPEN_STABLE_URL="https://github.com/universal-ctags/ctags/releases/download/v${CTAGS_VERSION}/universal-ctags-${CTAGS_VERSION}.tar.gz"
+export ZOPEN_BOOTSTRAP="./autogen.sh"
+export ZOPEN_STABLE_DEPS="autoconf automake m4 perl git make gettext m4 autoconf automake zoslib pkgconfig diffutils grep python"
+export ZOPEN_STABLE_URL="https://github.com/universal-ctags/ctags.git"
+export ZOPEN_STABLE_TAG="v${CTAGS_VERSION}"
+export ZOPEN_CHECK_OPTS="-i check"
 
-export ZOPEN_CHECK="./ctags"
-export ZOPEN_CHECK_OPTS="--verbose=yes -R ."
 export ZOPEN_COMP=CLANG
 
 zopen_pre_patch()
@@ -24,16 +24,20 @@ zopen_check_results()
   dir="$1"
   pfx="$2"
   chk="$1/$2_check.log"
-  grep -q "OPENING e_vms.h as C++ language include file" ${chk}
-  failures=$?
-  # Echo the following information to guage build health
-  echo "actualFailures:$failures"
-  echo "totalTests:1"
-  echo "expectedFailures:0"
+  
+  failures=$(grep "#FAILED" ${chk} | sed -e "s#.* ##g" | xargs  | sed -e "s/ /+/g" | bc)
+  passed=$(grep "#passed"  ${chk} | awk '{ print $2 }')
+  totalTests=$((failures+passed))
+
+  cat <<ZZ
+  actualFailures:$failures
+  totalTests:$totalTests
+  expectedFailures:25
+ZZ
 }
 
 zopen_get_version()
 {
-  ./ctags --version | head -1 | awk -F, '{ print $1 }' | awk  -F' '  '{ print $3 }'
+  ./ctags --version | head -1 | cut -f1 -d'(' | awk '{ printf $3 }'
 }
 

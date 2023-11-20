@@ -1,0 +1,13 @@
+diff --git a/extra-cmds/acutest.h b/extra-cmds/acutest.h
+index 7c89b99f..b0144bb7 100644
+--- a/extra-cmds/acutest.h
++++ b/extra-cmds/acutest.h
+@@ -281,7 +281,7 @@
+ #include <string.h>
+ #include <setjmp.h>
+ 
+-#if defined(unix) || defined(__unix__) || defined(__unix) || defined(__APPLE__)
++#if defined(unix) || defined(__unix__) || defined(__unix) || defined(__APPLE__) || defined(__MVS__)
+     #define ACUTEST_UNIX_       1
+     #include <errno.h>
+     #include <libgen.h>
