@@ -1,5 +1,5 @@
 # bump: ctags-version /CTAGS_VERSION="(.*)"/ https://github.com/universal-ctags/ctags.git|semver:*
-CTAGS_VERSION="6.0.0"
+CTAGS_VERSION="6.1.0"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_DEV_URL="https://github.com/universal-ctags/ctags.git"
