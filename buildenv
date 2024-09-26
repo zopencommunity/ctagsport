@@ -10,7 +10,7 @@ export ZOPEN_STABLE_DEPS="autoconf automake m4 perl git make gettext m4 autoconf
 export ZOPEN_STABLE_URL="https://github.com/universal-ctags/ctags.git"
 export ZOPEN_STABLE_TAG="v${CTAGS_VERSION}"
 export ZOPEN_CHECK_OPTS="-i check"
-export ZOPEN_CONFIGURE_OPTS="--enable-tmpdir=/tmp"
+export ZOPEN_EXTRA_CONFIGURE_OPTS="--enable-tmpdir=/tmp"
 
 export ZOPEN_COMP=CLANG
 
