@@ -1,8 +1,8 @@
 diff --git a/Makefile.am b/Makefile.am
-index 72298929..bbd8036f 100644
+index 4f493d0..c70b98c 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -76,7 +76,7 @@ cc4b_verbose = $(cc4b_verbose_@AM_V@)
+@@ -83,7 +83,7 @@ cc4b_verbose = $(cc4b_verbose_@AM_V@)
  cc4b_verbose_ = $(cc4b_verbose_@AM_DEFAULT_V@)
  cc4b_verbose_0 = @echo CC4BUILD "  $@";
  $(PACKCC): $(srcdir)/$(PACKCC_SRC)
